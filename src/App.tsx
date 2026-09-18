@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import type { Technology } from "./types/technology";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -19,21 +20,32 @@ function App() {
       );
 
       if (alreadyAdded) {
+        toast.warning(`${technology.name} is already in your stack.`);
         return current;
       }
 
+      toast.success(`${technology.name} added to your stack.`);
       return [...current, technology];
     });
   };
 
   const handleRemove = (id: number) => {
-    setSelectedTechnologies((current) =>
-      current.filter((technology) => technology.id !== id)
-    );
+    setSelectedTechnologies((current) => {
+      const removedTechnology = current.find(
+        (technology) => technology.id === id
+      );
+
+      if (removedTechnology) {
+        toast.success(`${removedTechnology.name} removed from your stack.`);
+      }
+
+      return current.filter((technology) => technology.id !== id);
+    });
   };
 
   const handleRemoveAll = () => {
     setSelectedTechnologies([]);
+    toast.success("All technologies removed from your stack.");
   };
 
   useEffect(() => {
@@ -71,6 +83,8 @@ function App() {
           onRemove={handleRemove}
           onRemoveAll={handleRemoveAll}
         />
+
+        <ToastContainer />
       </div>
     </div>
   );
