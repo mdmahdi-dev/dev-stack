@@ -1,3 +1,5 @@
+import heroImage from "../assets/hero.png";
+
 function Hero() {
   return (
     <section className="bg-white">
@@ -36,7 +38,7 @@ function Hero() {
         {/* Hero Image */}
         <div className="flex justify-center">
           <img
-            src="https://illustrations.popsy.co/gray/developer.svg"
+            src={heroImage}
             alt="Developer illustration"
             className="w-full max-w-lg"
           />
