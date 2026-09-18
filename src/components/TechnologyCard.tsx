@@ -2,10 +2,19 @@ import type { Technology } from "../types/technology";
 
 interface TechnologyCardProps {
     technology: Technology;
+    selectedTechnologies: Technology[];
     onAdd: (technology: Technology) => void;
 }
 
-function TechnologyCard({ technology, onAdd }: TechnologyCardProps) {
+function TechnologyCard({
+    technology,
+    selectedTechnologies,
+    onAdd,
+}: TechnologyCardProps) {
+    const isAdded = selectedTechnologies.some(
+        (item) => item.id === technology.id
+    );
+
     return (
         <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
 
@@ -54,9 +63,10 @@ function TechnologyCard({ technology, onAdd }: TechnologyCardProps) {
             {/* Add Button */}
             <button
                 onClick={() => onAdd(technology)}
-                className="mt-5 w-full rounded-lg bg-black px-4 py-2 font-semibold text-white hover:bg-gray-800"
+                disabled={isAdded}
+                className="mt-5 w-full rounded-lg bg-black px-4 py-2 font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-400"
             >
-                Add to Stack
+                {isAdded ? "✓ Added to Stack" : "Add to Stack"}
             </button>
 
         </div>

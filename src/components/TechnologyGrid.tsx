@@ -3,11 +3,13 @@ import TechnologyCard from "./TechnologyCard";
 
 interface TechnologyGridProps {
     technologies: Technology[];
+    selectedTechnologies: Technology[];
     onAdd: (technology: Technology) => void;
 }
 
 function TechnologyGrid({
     technologies,
+    selectedTechnologies,
     onAdd,
 }: TechnologyGridProps) {
     return (
@@ -27,6 +29,7 @@ function TechnologyGrid({
                     <TechnologyCard
                         key={technology.id}
                         technology={technology}
+                        selectedTechnologies={selectedTechnologies}
                         onAdd={onAdd}
                     />
                 ))}

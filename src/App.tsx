@@ -13,7 +13,17 @@ function App() {
     useState<Technology[]>([]);
 
   const handleAdd = (technology: Technology) => {
-    setSelectedTechnologies((current) => [...current, technology]);
+    setSelectedTechnologies((current) => {
+      const alreadyAdded = current.some(
+        (item) => item.id === technology.id
+      );
+
+      if (alreadyAdded) {
+        return current;
+      }
+
+      return [...current, technology];
+    });
   };
 
   const handleRemove = (id: number) => {
@@ -51,6 +61,7 @@ function App() {
 
       <TechnologyGrid
         technologies={technologies}
+        selectedTechnologies={selectedTechnologies}
         onAdd={handleAdd}
       />
 
