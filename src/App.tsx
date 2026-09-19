@@ -15,19 +15,21 @@ function App() {
     useState<Technology[]>([]);
 
   const handleAdd = (technology: Technology) => {
-    setSelectedTechnologies((current) => {
-      const alreadyAdded = current.some(
-        (item) => item.id === technology.id
-      );
+    const alreadyAdded = selectedTechnologies.some(
+      (item) => item.id === technology.id
+    );
 
-      if (alreadyAdded) {
-        toast.warning(`${technology.name} is already in your stack.`);
-        return current;
-      }
+    if (alreadyAdded) {
+      toast.warning(`${technology.name} is already in your stack.`);
+      return;
+    }
 
-      toast.success(`${technology.name} added to your stack.`);
-      return [...current, technology];
-    });
+    setSelectedTechnologies((current) => [
+      ...current,
+      technology,
+    ]);
+
+    toast.success(`${technology.name} added to your stack.`);
   };
 
   const handleRemove = (id: number) => {
