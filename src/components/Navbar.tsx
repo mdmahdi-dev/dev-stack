@@ -4,7 +4,7 @@ function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
         <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-            <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+            <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
                 {/* Mobile Menu Button */}
                 <button
@@ -16,7 +16,7 @@ function Navbar() {
                 </button>
 
                 {/* Logo */}
-                <div className="text-xl font-bold text-gray-900 md:text-2xl">
+                <div className="text-xl font-bold text-gray-900 md:text-2xl md:static absolute left-1/2 -translate-x-1/2">
                     Dev Stack
                 </div>
 
@@ -72,7 +72,7 @@ function Navbar() {
 
                 {/* Authentication */}
                 <div className="flex items-center gap-3">
-                    <button className="hidden text-gray-700 sm:block">
+                    <button className="text-gray-700">
                         Sign In
                     </button>
 

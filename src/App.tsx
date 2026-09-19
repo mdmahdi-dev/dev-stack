@@ -62,7 +62,13 @@ function App() {
   }, []);
 
   if (loading) {
-    return <h1>Loading technologies...</h1>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <h1 className="text-xl font-semibold text-gray-600">
+          Loading technologies...
+        </h1>
+      </div>
+    );
   }
 
   return (
@@ -71,21 +77,25 @@ function App() {
 
       <Hero />
 
-      <TechnologyGrid
-        technologies={technologies}
-        selectedTechnologies={selectedTechnologies}
-        onAdd={handleAdd}
-      />
+      <div className="mx-auto grid max-w-7xl gap-8 px-6 pb-16 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <TechnologyGrid
+            technologies={technologies}
+            selectedTechnologies={selectedTechnologies}
+            onAdd={handleAdd}
+          />
+        </div>
 
-      <div className="mx-auto max-w-7xl px-6 pb-16">
-        <YourStack
-          selectedTechnologies={selectedTechnologies}
-          onRemove={handleRemove}
-          onRemoveAll={handleRemoveAll}
-        />
-
-        <ToastContainer />
+        <div>
+          <YourStack
+            selectedTechnologies={selectedTechnologies}
+            onRemove={handleRemove}
+            onRemoveAll={handleRemoveAll}
+          />
+        </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 }
